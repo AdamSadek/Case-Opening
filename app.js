@@ -18,12 +18,26 @@ $(document).ready(function() {
         return;
       }
       active = true;
+  
+      // Add class to trigger sliding animation
       itemsList.addClass('active');
+  
+      // Set timeout to remove class after a certain duration
       setTimeout(function() {
         itemsList.removeClass('active');
         active = false;
-      }, 5000);
+  
+        // Set timeout to select a random item after a certain duration
+        setTimeout(function() {
+          var items = itemsList.children();
+          var winnerIndex = Math.floor(Math.random() * items.length);
+          items.removeClass('winner');
+          items.eq(winnerIndex).addClass('winner');
+        }, 7000); // Select a random item after 5 seconds
+      }, 5000); // Stop sliding after 5 seconds
     }
+  
+  
   
     // Click event for the Open Case button
     openCaseBtn.on('click', function() {
